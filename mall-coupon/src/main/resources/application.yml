@@ -15,3 +15,7 @@ mybatis-plus:
 
 server:
   port: 7000
+
+user:
+  name: zs
+  age: 18

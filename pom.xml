@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lv.mall</groupId>
-    <artifactId>mall-ware</artifactId>
+    <artifactId>mall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall</name>
     <description>聚合服务</description>
@@ -18,6 +18,8 @@
 <!--        <module>renren-fast-master</module>-->
 <!--        <module>renren-generator-master</module>-->
         <module>mall-common</module>
+        <module>mall-gateway</module>
+        <module>mall-third-part</module>
     </modules>
 
 
