@@ -15,11 +15,12 @@
         <module>mall-order</module>
         <module>mall-product</module>
         <module>mall-ware</module>
+        <module>mall-demo-1</module>
 <!--        <module>renren-fast-master</module>-->
 <!--        <module>renren-generator-master</module>-->
         <module>mall-common</module>
         <module>mall-gateway</module>
-        <module>mall-third-part</module>
+<!--        <module>mall-third-part</module>-->
     </modules>
 
 
