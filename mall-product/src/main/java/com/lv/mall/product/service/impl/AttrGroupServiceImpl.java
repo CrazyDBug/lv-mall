@@ -1,7 +1,10 @@
 package com.lv.mall.product.service.impl;
 
+import com.lv.mall.product.entity.AttrEntity;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -61,5 +64,16 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             return new PageUtils(page);
         }
     }
+
+//    /**
+//     * 根据分组id查找关联的所有基本属性
+//     * @param attrgroupId
+//     * @return
+//     */
+//    @Override
+//    public List<AttrEntity> getRelationAttr(Long attrgroupId) {
+//        reld
+//        return null;
+//    }
 
 }
