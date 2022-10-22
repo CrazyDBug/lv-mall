@@ -61,4 +61,23 @@ public class R extends HashMap<String, Object> {
 		super.put(key, value);
 		return this;
 	}
+
+//	public Object get
+
+
+
+	public  Integer getCode () {
+//		return this.getCode();
+		Object code = this.get("code");
+//		String s = (String) code;
+		return (Integer) code;
+////		return (Integer) this.getCode();
+//		// TODO: 2022/10/22 下面无效 编译报错？？？
+////		return Integer.parseInt((String)this.getCode("code"));
+	}
+
+//	public Integer getCode() {
+//
+//		return (Integer) this.get("code");
+//	}
 }

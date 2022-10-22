@@ -3,8 +3,11 @@ package com.lv.mall.product.service.impl;
 import com.lv.mall.product.service.CategoryBrandRelationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
 import java.util.Map;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
     @Autowired
+//    @Lazy   // 循环依赖问题
     CategoryBrandRelationService categoryBrandRelationService;
 
 
@@ -31,7 +35,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         String key = (String) params.get("key");
         QueryWrapper<BrandEntity> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(key)) {
-            queryWrapper.eq("brand_id",key).or().like("name",key);
+            queryWrapper.eq("brand_id", key).or().like("name", key);
         }
 
         IPage<BrandEntity> page = this.page(
@@ -49,7 +53,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         this.updateById(brand);
         if (!StringUtils.isEmpty(brand.getName())) {
             // 同步更新到关联表
-            categoryBrandRelationService.updateBrand(brand.getBrandId(),brand.getName());
+            categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
             // TODO: 2022/10/20  更新其他关联
         }
     }
