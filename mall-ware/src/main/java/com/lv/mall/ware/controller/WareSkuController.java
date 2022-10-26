@@ -1,14 +1,12 @@
 package com.lv.mall.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.lv.mall.ware.vo.SkuHasStockVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.lv.mall.ware.entity.WareSkuEntity;
 import com.lv.mall.ware.service.WareSkuService;
@@ -79,6 +77,20 @@ public class WareSkuController {
 		wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    /**
+     * 查询sku是否有库存
+     * @return
+     */
+    @PostMapping("/hasstock")
+    public R  getSkusHasStock(@RequestBody List<Long> skuIds) {
+        List<SkuHasStockVo> vos = wareSkuService.getSkusHasStock(skuIds);
+//        return R.ok().put("data",vos);
+//        R<List<SkuHasStockVo>> ok = R.ok();
+//        ok.setData(vos);
+//        return ok;
+        return R.ok().setData(vos);
     }
 
 }

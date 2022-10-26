@@ -1,8 +1,12 @@
 package com.lv.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.alibaba.nacos.shaded.org.checkerframework.checker.units.qual.A;
+import com.lv.mall.product.entity.ProductAttrValueEntity;
+import com.lv.mall.product.service.ProductAttrValueService;
 import com.lv.mall.product.vo.AttrGroupRelationVo;
 import com.lv.mall.product.vo.AttrRespVo;
 import com.lv.mall.product.vo.AttrVo;
@@ -28,12 +32,15 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    ProductAttrValueService productAttrValueService;
+
     //    @GetMapping("/base/list/{catelogId}")
     @GetMapping("/{attrType}/list/{catelogId}")
     public R baseAttrList(@RequestParam Map<String, Object> params,
                           @PathVariable("catelogId") Long catelogId,
                           @PathVariable("attrType") String type) {
-        PageUtils page = attrService.queryBaseAttrPage(params, catelogId,type);
+        PageUtils page = attrService.queryBaseAttrPage(params, catelogId, type);
         return R.ok().put("page", page);
     }
 
@@ -92,6 +99,19 @@ public class AttrController {
     public R delete(@RequestBody Long[] attrIds) {
         attrService.removeByIds(Arrays.asList(attrIds));
 
+        return R.ok();
+    }
+
+    @GetMapping("base/listforspu/{spuId}")
+    public R baseAttrListForSpu(@PathVariable Long spuId) {
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrListForSpu(spuId);
+        return R.ok().put("data", entities);
+    }
+
+    @PostMapping("/update/{spuId}")
+    public R updateSpuAttr(@PathVariable("spuId")Long spuId,
+                           @RequestBody List<ProductAttrValueEntity> entities) {
+        productAttrValueService.updateSpuAttr(spuId,entities);
         return R.ok();
     }
 
